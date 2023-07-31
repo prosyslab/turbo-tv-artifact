@@ -14,8 +14,8 @@ with 512 GB of RAM and Ubuntu 22.04. We recommend running the experiments with a
 We provide the artifact as a Docker image. To launch the BayeSmith Docker image, run the following commands:
 
 ```bash
-docker pull prosyslab/turbo-tv
-docker run -it prosyslab/turbo-tv
+docker pull turbotv2024/turbo-tv
+docker run -it turbotv2024/turbo-tv
 ```
 
 It takes about [TODO] minutes to load the image.
@@ -23,4 +23,4 @@ It takes about [TODO] minutes to load the image.
 ### Notice
 
 Most of the experiments take a long time. For convenience, all the data obtained from the instructions below are already shipped
-in the Docker image. Also, we report the approximated running time of each instruction.
+in the Docker image. 
