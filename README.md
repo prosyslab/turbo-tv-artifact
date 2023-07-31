@@ -2,7 +2,7 @@
 
 This is the artifact of the paper Translation Validation for JIT Compiler in the V8 JavaScript Engine to appear in ICSE 2024.
 
-## 1. Getting started
+## Getting started
 
 ### System requirements
 
