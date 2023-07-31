@@ -24,38 +24,3 @@ It takes about [TODO] minutes to load the image.
 
 Most of the experiments take a long time. For convenience, all the data obtained from the instructions below are already shipped
 in the Docker image. Also, we report the approximated running time of each instruction.
-
----
-
-## 2. Directory structure [TODO]
-
-```plaintext
-├─ README.md                         <- The top-level README (this file)
-│
-└─ turbo-tv-exp                      <- Main implementation   │
-   ├─ turbo-tv
-   │   └─
-   ├─ exp                            <- Script for experiment
-   │
-   ├─ benchmarks                     <- Benchmarks
-   │  ├─ bug
-   │  ├─ unit-js
-   │  ├─ corpus
-   │  └─ unit-llvm
-   ...
-
-```
-
----
-
-## 3. Reproduce evaluation results
-
-### 3.1 Effectiveness of TurboTV in discovering known bugs (Table 1)
-
-### 3.2 Cumulative distribution of the validation time on the Corpus Benchmark (Figure 6)
-
-### 3.3 Effectiveness of TurboTV for a large set of JS programs (Table 2)
-
-### 3.4 Effectiveness of cross-language TV (Table 3)
-
-### 3.5 Overhead of Fuzzilli combined with TurboTV (Figure 8)
