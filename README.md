@@ -16,8 +16,6 @@ docker pull turbotv2024/turbo-tv
 docker run -it turbotv2024/turbo-tv
 ```
 
-It takes about [TODO] minutes to load the image.
-
 The artifact implementation is at `/home/user/turbo-tv-exp`; you can find the detail at `README.md` in there.
 
 ### Notice
