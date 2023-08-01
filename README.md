@@ -39,13 +39,13 @@ in the Docker image.
 │  ├─ 1126249
 │  ├─ 1198705
 │  └─ ...
-├─ eval                         <- Evaluation results. Counter Examples list in here.
+├─ eval                         <- Evaluation results. Counter examples list in here.
 ├─ workbenchs                   <- Workbenchs for reproduced evaluation. All the data already in here.
 │  ├─ workbench-corpus
 │  ├─ workbench-unitjs
 │  └─ ...
 ├─ issues                       <- Build configuration and PoC for each TurboFan bugs
-├─ example                      <- Example javascriptsls
+├─ example                      <- Example javascripts
 ```
 
 ## Usage
