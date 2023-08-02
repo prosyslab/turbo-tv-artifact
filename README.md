@@ -5,7 +5,7 @@ This is the artifact of the paper Translation Validation for JIT Compiler in the
 ## System requirements
 
 To run the experiments in the paper, we used a 64-core (Intel Xeon Processor Gold 6226R, 2.90 GHz) machine
-with 512 GB of RAM and Ubuntu 22.04. We recommend running the experiments with at least 16-core machine with 32 GB of RAM.
+with 512 GB of RAM and Ubuntu 22.04. We recommend running the experiments with at least a 16-core machine with 32 GB of RAM.
 
 ## Loading Docker image
 
@@ -32,13 +32,13 @@ Most of the experiments take a long time. For convenience, all the data obtained
 │  ├─ unit-js
 │  ├─ corpus
 │  └─ unit-llvm
-├─ fuzzilli                     <- Validation corpus generator implemened on Fuzzilli
+├─ fuzzilli                     <- Validation corpus generator implemented on Fuzzilli
 ├─ d8s                          <- d8 builds for each TurboFan bugs
 │  ├─ 1126249
 │  ├─ 1198705
 │  └─ ...
-├─ eval                         <- Evaluation results. Counter examples list in here.
-├─ workbenchs                   <- Workbenchs for reproduced evaluation. All the data already in here.
+├─ eval                         <- Evaluation results. Counterexamples list in here.
+├─ workbenchs                   <- Workbenchs for reproduced evaluation. All the data is already in here.
 │  ├─ workbench-corpus
 │  ├─ workbench-unitjs
 │  └─ ...
@@ -128,13 +128,13 @@ Effectiveness of cross-language TV for unit tests in [LLVM](https://github.com/l
 
 **RQ3. Fuzzer Overhead**
 
-Validation corpus generation algorithm is implemented in `./fuzzilli` and its executable is linked to `./fuzzilli-cli`. You can run following command to generate validation corpus.
+The validation corpus generation algorithm is implemented in `./fuzzilli` and its executable is linked to `./fuzzilli-cli`. You can run the following command to generate a validation corpus.
 
 ```bash
 ./fuzzilli-cli --profile=v8 --timeout=500 --storagePath=./fuzz-out fuzzilli/v8/d8
 ```
 
-Following command will augment corpus and validate each JS.
+The following command will augment the corpus and validate each JS.
 ```bash
 ./exp eval --overhead
 ```
