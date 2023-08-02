@@ -1,13 +1,13 @@
 # TurboTV Experiment
 
-This is the artifact of the paper Translation Validation for JIT Compiler in the V8 JavaScript Engine submitted to ICSE 2024.
+This is the artifact of the paper Translation Validation for JIT Compiler in the V8 JavaScript Engine to appear in ICSE 2024.
 
-### System requirements
+## System requirements
 
 To run the experiments in the paper, we used a 64-core (Intel Xeon Processor Gold 6226R, 2.90 GHz) machine
 with 512 GB of RAM and Ubuntu 22.04. We recommend running the experiments with at least 16-core machine with 32 GB of RAM.
 
-### Loading Docker image
+## Loading Docker image
 
 We provide the artifact as a Docker image. To launch the Turbo-TV Docker image, run the following commands:
 
@@ -16,12 +16,11 @@ docker pull turbotv2024/turbo-tv
 docker run -it turbotv2024/turbo-tv
 ```
 
-The artifact implementation is at `/home/user/turbo-tv-exp`; you can find the detail at `README.md` in there.
+The artifact implementation is at `/home/user/turbo-tv-exp`.
 
 ### Notice
 
-Most of the experiments take a long time. For convenience, all the data obtained from the instructions below are already shipped
-in the Docker image. 
+Most of the experiments take a long time. For convenience, all the data obtained from the instructions below are already shipped in the Docker image.
 
 
 ## Directory Structure
@@ -33,6 +32,7 @@ in the Docker image.
 │  ├─ unit-js
 │  ├─ corpus
 │  └─ unit-llvm
+├─ fuzzilli                     <- Validation corpus generator implemened on Fuzzilli
 ├─ d8s                          <- d8 builds for each TurboFan bugs
 │  ├─ 1126249
 │  ├─ 1198705
@@ -43,19 +43,69 @@ in the Docker image.
 │  ├─ workbench-unitjs
 │  └─ ...
 ├─ issues                       <- Build configuration and PoC for each TurboFan bugs
-├─ example                      <- Example javascripts
 ```
 
 ## Usage
 We provide a script for easy use of Turbo-TV. The script helps Turbo-TV to receive the js files and perform Translation Validation. The script works in a [pyenv](https://github.com/pyenv/pyenv) environment.
 ```bash
 $ pyenv activate turbo-tv
-(turbo-tv) $./exp turbo-tv --check-eq example/add.js --timeout=10 # check EQ for one JS
-(turbo-tv) $./exp turbo-tv --check-ub example/add.js --timeout=10 # check UB for one JS
-(turbo-tv) $./exp turbo-tv --check-eq example --timeout=10        # validate JSs in the directory
+(turbo-tv) $./exp v8 --select --issue 1199345                   # switch v8 for issue #1199345
+(turbo-tv) $./exp turbo-tv --check-ub issues/1199345/1199345.js # Check UB
+(turbo-tv) $./exp turbo-tv --check-eq issues/1199345/1199345.js # Check EQ
 ```
 
-## Reproduce Evaluation (Table 1, Table 2 and Table 3)
+The EQ check output would be as follows:
+```plaintext
+====================[Check EQ of js(s) in target dir]====================
+[1] Emit reductions
+100%|██████████████████████████████████████████████| 1/1 [00:00<00:00,  4.40it/s]
+[2] Check EQ
+/home/user/turbo-tv-exp/workbench/1199345/1: O
+/home/user/turbo-tv-exp/workbench/1199345/3: O
+/home/user/turbo-tv-exp/workbench/1199345/4: O
+/home/user/turbo-tv-exp/workbench/1199345/5: O
+/home/user/turbo-tv-exp/workbench/1199345/8: O
+/home/user/turbo-tv-exp/workbench/1199345/9: O
+/home/user/turbo-tv-exp/workbench/1199345/10: O
+/home/user/turbo-tv-exp/workbench/1199345/6: O
+/home/user/turbo-tv-exp/workbench/1199345/7: O
+/home/user/turbo-tv-exp/workbench/1199345/2: X
+c.e. => /home/user/turbo-tv-exp/workbench/1199345/2.ce
+100%|██████████████████████████████████████████████| 10/10 [00:01<00:00,  6.50it/s]
+EQ check done. Elapsed(s): 1.5940730571746826
+               Avg Elapsed(s): 0.15940730571746825
+```
+
+*c.e. => /home/user/turbo-tv-exp/workbench/1199345/2.ce* indicates that the counter-example is saved at `/home/user/turbo-tv-exp/workbench/1199345/2.ce`. You can find the following counter-example there.
+
+```plaintext
+Result: Not Verified
+CounterExample:
+Parameters:
+Parameter[0]: TaggedSigned(0)
+Parameter[1]: TaggedSigned(865386496)
+
+State of src
+#0:NumberConstant(0) [Range (0.000000, 0.000000)] =>
+  Value: TaggedSigned(0)
+  ControlToken: false
+  UB: false
+  Deopt: false
+#1:NumberConstant(-0) [MinusZero] =>
+  Value: Float64(-0.0)
+  ControlToken: false
+  UB: false
+  Deopt: false
+#2:Start() [Internal] =>
+  Value: empty
+  ControlToken: true
+  UB: false
+  Deopt: false
+...
+```
+
+
+## Reproduce Evaluation
 The following commands run Turbo-TV to reproduce experiments in the paper.
 
 **RQ1. Precision and Scalability of TurboTV**
@@ -74,4 +124,17 @@ The following commands run Turbo-TV to reproduce experiments in the paper.
 Effectiveness of cross-language TV for unit tests in [LLVM](https://github.com/llvm/llvm-project). (Table 3)
 ```bash
 (turbo-tv) $./exp eval --cross-validation
+```
+
+**RQ3. Fuzzer Overhead**
+
+Validation corpus generation algorithm is implemented in `./fuzzilli` and its executable is linked to `./fuzzilli-cli`. You can run following command to generate validation corpus.
+
+```bash
+./fuzzilli-cli --profile=v8 --timeout=500 --storagePath=./fuzz-out fuzzilli/v8/d8
+```
+
+Following command will augment corpus and validate each JS.
+```bash
+./exp eval --overhead
 ```
