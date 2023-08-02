@@ -9,7 +9,7 @@ with 512 GB of RAM and Ubuntu 22.04. We recommend running the experiments with a
 
 ### Loading Docker image
 
-We provide the artifact as a Docker image. To launch the BayeSmith Docker image, run the following commands:
+We provide the artifact as a Docker image. To launch the Turbo-TV Docker image, run the following commands:
 
 ```bash
 docker pull turbotv2024/turbo-tv
