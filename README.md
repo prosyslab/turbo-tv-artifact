@@ -1,6 +1,6 @@
 # TurboTV Experiment
 
-This is the artifact of the paper Translation Validation for JIT Compiler in the V8 JavaScript Engine to appear in ICSE 2024.
+This is the artifact of the paper Translation Validation for JIT Compiler in the V8 JavaScript Engine submitted to ICSE 2024.
 
 ### System requirements
 
