@@ -12,8 +12,8 @@ with 512 GB of RAM and Ubuntu 22.04. We recommend running the experiments with a
 We provide the artifact as a Docker image. To launch the Turbo-TV Docker image, run the following commands:
 
 ```bash
-docker pull turbotv2024/turbo-tv
-docker run -it turbotv2024/turbo-tv
+docker pull prosyslab/turbo-tv
+docker run -it prosyslab/turbo-tv
 ```
 
 The artifact implementation is at `/home/user/turbo-tv-exp`.
@@ -137,4 +137,9 @@ The validation corpus generation algorithm is implemented in `./fuzzilli` and it
 The following command will augment the corpus and validate each JS.
 ```bash
 ./exp eval --overhead
+```
+
+The following command will augment the corpus already been created.
+```bash
+./exp eval --overhead --corpus benchmarks/corpus/
 ```
