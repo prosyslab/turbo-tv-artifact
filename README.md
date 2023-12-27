@@ -139,7 +139,7 @@ The following command will augment the corpus and validate each JS.
 ./exp eval --overhead
 ```
 
-The following command will augment the corpus already been created.
+The following command will augment and validate the corpus already been created.
 ```bash
 ./exp eval --overhead --corpus benchmarks/corpus/
 ```
