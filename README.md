@@ -1,4 +1,4 @@
-# TurboTV Experiment
+# TurboTV Artifact
 
 This is the artifact of the paper Translation Validation for JIT Compiler in the V8 JavaScript Engine to appear in ICSE 2024.
 
@@ -121,7 +121,7 @@ The following commands run Turbo-TV to reproduce experiments in the paper.
 ```
 **RQ2. Effectiveness of Cross-Language TV**
 
-Effectiveness of cross-language TV for unit tests in [LLVM](https://github.com/llvm/llvm-project). (Table 3)
+Effectiveness of cross-language TV for unit tests in [LLVM](https://github.com/llvm/llvm-project). (Table 2)
 ```bash
 (turbo-tv) $./exp eval --cross-validation
 ```
