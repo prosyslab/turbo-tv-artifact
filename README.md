@@ -14,7 +14,7 @@ We provide the artifact as a Docker image. To launch the Turbo-TV Docker image, 
 
 ```bash
 docker pull prosyslab/turbo-tv
-docker run -it prosyslab/turbo-tv
+docker run -it --privileged prosyslab/turbo-tv
 ```
 
 The artifact implementation is at `/home/user/turbo-tv-exp`.
@@ -32,7 +32,8 @@ Most of the experiments take a long time. For convenience, all the data obtained
 ├─ benchmarks                   <- Benchmarks
 │  ├─ unit-js
 │  ├─ corpus
-│  └─ unit-llvm
+│  ├─ unit-llvm
+│  └─ ...
 ├─ fuzzilli                     <- Validation corpus generator implemented on Fuzzilli
 ├─ d8s                          <- d8 builds for each TurboFan bugs
 │  ├─ 1126249
@@ -128,19 +129,15 @@ Effectiveness of cross-language TV for unit tests in [LLVM](https://github.com/l
 ```
 
 **RQ3. Fuzzer Overhead**
-
-The validation corpus generation algorithm is implemented in `./fuzzilli` and its executable is linked to `./fuzzilli-cli`. You can run the following command to generate a validation corpus.
-
-```bash
-./fuzzilli-cli --profile=v8 --timeout=500 --storagePath=./fuzz-out fuzzilli/v8/d8
-```
-
-The following command will augment the corpus and validate each JS.
-```bash
-./exp eval --overhead
-```
-
 The following command will augment and validate the corpus already been created.
 ```bash
-./exp eval --overhead --corpus benchmarks/corpus/
+./exp eval --overhead --corpus benchmarks/corpus-overhead/
 ```
+
+For convenience, we provide a command to generate a corpus from scratch.
+For example, the following command generates random JS files for 10 seconds and measures overhead on the generated corpus 
+```bash
+./exp eval --overhead --timeout 10
+```
+
+
