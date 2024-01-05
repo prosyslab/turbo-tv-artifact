@@ -1,6 +1,7 @@
 # TurboTV Artifact
 
-This is the artifact of the paper Translation Validation for JIT Compiler in the V8 JavaScript Engine to appear in ICSE 2024.
+This is the artifact of the paper "Translation Validation for JIT Compiler in the V8 JavaScript Engine" to appear in ICSE 2024.
+The paper presents [TurboTV](https://github.com/prosyslab/turbo-tv), the first SMT-based translation validation tool for the TurboFan engine of V8.
 
 ## System requirements
 
